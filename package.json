@@ -1,0 +1,53 @@
+{
+  "name": "react-boilerplate",
+  "version": "0.0.0",
+  "engines": {
+    "node": "^10.0.0"
+  },
+  "scripts": {
+    "build:dev": "webpack --mode development --config ./webpack.config.mjs -r @std/esm",
+    "build:prd": "webpack --mode production --config ./webpack.config.mjs -r @std/esm",
+    "start": "webpack-dev-server --config ./webpack.config.mjs -r @std/esm",
+    "type-check": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "tslint --fix",
+    "*.{ts,tsx,js,jsx,mjs,html,scss,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": "git@github.com:araya-playground/react-boilerplate.git",
+  "author": "arayaryoma",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-typescript": "^7.3.2",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@std/esm": "^0.26.0",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "tslint": "^5.13.1",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
