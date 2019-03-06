@@ -1,0 +1,4 @@
+@import "../../styles/custom-properties.css";
+.title {
+  color: var(--blue);
+}

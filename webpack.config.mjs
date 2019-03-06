@@ -5,6 +5,9 @@ const config = {
   entry: {
     main: path.resolve("./src/index.tsx")
   },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+  },
   module: {
     rules: [
       {
@@ -13,6 +16,17 @@ const config = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: { importLoaders: 1, modules: true }
+          },
+          "postcss-loader"
+        ]
       }
     ]
   },

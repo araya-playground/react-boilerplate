@@ -1,0 +1,4 @@
+@import "custom-properties.css";
+:global .title {
+  color: var(--red);
+}

@@ -1,9 +1,13 @@
 import * as React from "react";
 import { render } from "react-dom";
+import "./styles/main.css";
+import Hello from "./components/hello/hello";
+import Bye from "./components/bye/bye";
 
 const App = () => (
   <div>
-    <h1> Hello World</h1>
+    <Hello name={"Michelle"} />
+    <Bye name={"Homura"} />
   </div>
 );
 
