@@ -35,7 +35,10 @@ const config = {
       filename: "index.html",
       template: "index.html"
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };
 
 export default config;
