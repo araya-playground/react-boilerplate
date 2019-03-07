@@ -1,12 +1,12 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import path from "path";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
 
 const config = {
   entry: {
-    main: path.resolve("./src/index.tsx")
+    main: path.resolve('./src/index.tsx'),
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   module: {
     rules: [
@@ -14,31 +14,42 @@ const config = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.css$/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
-            options: { importLoaders: 1, modules: true }
+            loader: 'css-loader',
+            options: { importLoaders: 1, modules: true },
           },
-          "postcss-loader"
-        ]
-      }
-    ]
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "index.html"
-    })
+      filename: 'index.html',
+      template: 'index.html',
+    }),
   ],
   devServer: {
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };
 
 export default config;
