@@ -1,5 +1,5 @@
-import * as React from "react";
-import styles from "./bye.css";
+import * as React from 'react';
+import styles from './bye.css';
 
 interface Props {
   name: string;
