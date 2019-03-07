@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/home/home';
 import Greet from './pages/greet/greet';
 
-const AppWithRouter = () => (
+const AppWithRouter = (): JSX.Element => (
   <Router>
     <div>
       <Route exact path="/" component={Home} />

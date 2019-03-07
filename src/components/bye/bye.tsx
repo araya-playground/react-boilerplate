@@ -5,6 +5,8 @@ interface Props {
   name: string;
 }
 
-const Bye = ({ name }: Props) => <p className={styles.title}>Bye, {name}</p>;
+const Bye = ({ name }: Props): JSX.Element => {
+  return <p className={styles.title}>Bye, {name}</p>;
+};
 
 export default Bye;

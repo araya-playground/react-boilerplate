@@ -3,7 +3,7 @@ import Bye from '../../components/bye/bye';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-const Greet = () => (
+const Greet = (): JSX.Element => (
   <div>
     <Hello name={'Michelle'} />
     <Bye name={'Homura'} />
