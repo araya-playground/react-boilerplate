@@ -5,22 +5,29 @@
     "node": "^10.0.0"
   },
   "scripts": {
-    "build:dev": "webpack --mode development --config ./webpack.config.mjs -r @std/esm",
-    "build:prd": "webpack --mode production --config ./webpack.config.mjs -r @std/esm",
+    "build:dev": "NODE_ENV=development webpack --mode development --config ./webpack.config.mjs -r @std/esm",
+    "build:stg": "NODE_ENV=staging webpack --mode production --config ./webpack.config.mjs -r @std/esm",
+    "build:prd": "NODE_ENV=production webpack --mode production --config ./webpack.config.mjs -r @std/esm",
     "start": "webpack-dev-server --config ./webpack.config.mjs -r @std/esm",
+    "test": "yarn run type-check",
     "type-check": "tsc",
     "fmt": " eslint --fix --ext .tsx --ext .ts src/ && prettier --write src/**/*",
-    "lint": " eslint --ext .tsx --ext .ts src/"
+    "lint": " eslint --ext .tsx --ext .ts src/ --max-warnings 1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,js}": "eslint",
-    "*.{ts,tsx,js,jsx,mjs,html,scss,css,json,md}": [
-      "npm run fmt",
+    "*.{ts,tsx,js,jsx,mjs}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,scss,css,json,md}": [
+      "prettier --write",
       "git add"
     ]
   },
