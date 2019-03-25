@@ -1,9 +1,14 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
-
 const config = {
   entry: {
     main: path.resolve('./src/index.tsx'),
+  },
+  output: {
+    path: path.resolve('./dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -19,17 +24,30 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
+        oneOf: [
           {
-            loader: 'css-loader',
-            options: { importLoaders: 1, modules: true },
+            resourceQuery: /^\?raw$/,
+            use: ['style-loader', 'css-loader'],
           },
-          'postcss-loader',
+          {
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1,
+                  modules: true,
+                  localIdentName: '[local]--[hash:base64:5]',
+                  import: false,
+                },
+              },
+              'postcss-loader',
+            ],
+          },
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg|ttf|woff|woff2|eot)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -39,6 +57,11 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ],
   },
   plugins: [
@@ -46,6 +69,12 @@ const config = {
       filename: 'index.html',
       template: 'index.html',
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve('./public'),
+        to: path.resolve('./dist'),
+      },
+    ]),
   ],
   devServer: {
     historyApiFallback: true,
