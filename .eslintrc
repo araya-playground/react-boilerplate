@@ -1,7 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
@@ -13,10 +12,10 @@
       "jsx": true
     }
   },
-  "plugins": ["react"],
   "rules": {
-
+   "@typescript-eslint/preffer-interfaces": "off"
   },
+  "plugins": ["react"],
   "settings": {
     "react": {
       "version": "detect"

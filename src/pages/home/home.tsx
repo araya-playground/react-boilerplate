@@ -1,20 +1,23 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './home.css';
+import ToDoList from '../../components/to-do-list/ToDoList';
+import { useEffect, useState } from 'react';
+import { ToDoItem } from '../../components/to-do-item/to-do-list-item';
 
-const Home = (): JSX.Element => (
-  <div>
-    <figure>
-      <img
-        src={require('../../assets/images/img.jpg')}
-        alt="image"
-        className={styles.img}
-      />
-      <figcaption>Photo by Nikolay Tarashchenko on Unsplash</figcaption>
-    </figure>
-    <p className="title">This is home!</p>
-    <Link to={'/greet'}>Go to greet </Link>
-  </div>
-);
+const mockItems: ToDoItem[] = [
+  {
+    title: 'hello',
+  },
+];
+const Home = (): JSX.Element => {
+  const [items, dispatchItems] = useState<ToDoItem[]>([]);
+  useEffect(() => {
+    dispatchItems(mockItems);
+  }, []);
+  return (
+    <div>
+      <ToDoList items={items} />
+    </div>
+  );
+};
 
 export default Home;
