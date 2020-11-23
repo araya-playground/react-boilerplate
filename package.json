@@ -9,7 +9,7 @@
     "build:dev": "NODE_ENV=development webpack",
     "build:stg": "NODE_ENV=staging webpack",
     "build:prd": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack-dev-server",
+    "dev": "NODE_ENV=development webpack serve",
     "test": "yarn run type-check && jest",
     "type-check": "tsc --noEmit",
     "fmt": " eslint --fix --ext .tsx --ext .ts src/ && prettier --write src/**/*",
