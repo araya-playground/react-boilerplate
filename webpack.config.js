@@ -39,7 +39,6 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       minify: !isDev,
-      title: isDev ? "[development mode] colec" : undefined,
     }),
   ],
   devServer: {
