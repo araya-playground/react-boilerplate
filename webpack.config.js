@@ -45,11 +45,6 @@ const config = {
   devServer: {
     hot: true,
     port,
-    after: (app, server) => {
-      console.log(
-        `The app will listen on http://${server.options.host}:${server.options.port}`
-      );
-    },
     historyApiFallback: true,
   },
 };
