@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const isDev = process.env.NODE_ENV !== "production";
 const port = process.env.PORT || 8000;
+
 const config = {
   mode: isDev ? "development" : "production",
   entry: path.resolve("src", "index.tsx"),
@@ -43,6 +45,12 @@ const config = {
   devServer: {
     hot: true,
     port,
+    after: (app, server) => {
+      console.log(
+        `The app will listen on http://${server.options.host}:${server.options.port}`
+      );
+    },
+    historyApiFallback: true,
   },
 };
 
