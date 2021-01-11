@@ -1,12 +1,17 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { FC } from "react";
+import { RoconRoot, useRoutes, Path } from "rocon/react";
 import Home from "./pages/home/home";
 
-const AppWithRouter = (): JSX.Element => (
-  <Router>
-    <div>
-      <Route exact path="/" component={Home} />
-    </div>
-  </Router>
-);
+const routes = Path().exact({
+  action: Home,
+});
 
-export default AppWithRouter;
+const Routes: FC = () => {
+  return useRoutes(routes);
+};
+
+export const AppWithRouter: FC = () => (
+  <RoconRoot>
+    <Routes />
+  </RoconRoot>
+);
